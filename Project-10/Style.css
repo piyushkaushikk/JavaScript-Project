@@ -1,0 +1,41 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #222;
+  background: #f7f7f7;
+}
+.site-wrap {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 48px 0;
+}
+
+/* start hidden / offset */
+.slide-in {
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+.align-left.slide-in {
+  transform: translateX(-30%) scale(0.95);
+}
+
+.align-right.slide-in {
+  transform: translateX(30%) scale(0.95);
+}
+
+/* when active, bring to place */
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
