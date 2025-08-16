@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian States Type Ahead</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .search {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+    }
+    .suggestions {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .suggestions li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .hl {
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Search Indian States</h2>
+  <input type="text" class="search" placeholder="Type a state name...">
+  <ul class="suggestions"></ul>
+
+  <script>
+    const states = [
+      { state: "Andhra Pradesh" },
+      { state: "Arunachal Pradesh" },
+      { state: "Assam" },
+      { state: "Bihar" },
+      { state: "Chhattisgarh" },
+      { state: "Goa" },
+      { state: "Gujarat" },
+      { state: "Haryana" },
+      { state: "Himachal Pradesh" },
+      { state: "Jharkhand" },
+      { state: "Karnataka" },
+      { state: "Kerala" },
+      { state: "Madhya Pradesh" },
+      { state: "Maharashtra" },
+      { state: "Manipur" },
+      { state: "Meghalaya" },
+      { state: "Mizoram" },
+      { state: "Nagaland" },
+      { state: "Odisha" },
+      { state: "Punjab" },
+      { state: "Rajasthan" },
+      { state: "Sikkim" },
+      { state: "Tamil Nadu" },
+      { state: "Telangana" },
+      { state: "Tripura" },
+      { state: "Uttar Pradesh" },
+      { state: "Uttarakhand" },
+      { state: "West Bengal" }
+    ];
+
+    function findMatches(wordToMatch, states) {
+      return states.filter(place => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return place.state.match(regex);
+      });
+    }
+
+    function displayMatches() {
+      const matchArray = findMatches(this.value, states);
+      const html = matchArray.map(place => {
+        const regex = new RegExp(this.value, 'gi');
+        const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+        return `
+          <li>
+            <span class="name">${stateName}</span>
+          </li>
+        `;
+      }).join('');
+      suggestions.innerHTML = html;
+    }
+
+    const searchInput = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', displayMatches);
+    searchInput.addEventListener('keyup', displayMatches);
+  </script>
+
+</body>
+</html>
