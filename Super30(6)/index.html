@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dev Tools Domination</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; line-height: 1.4; padding: 2rem; }
+    p { cursor: pointer; user-select: none; }
+  </style>
+</head>
+<body>
+  <h1>Dev Tools Domination (JS30 Day 9)</h1>
+  <p onclick="makeGreen()">× BREAK × DOWN × (click me)</p>
+
+  <script>
+    const dogs = [
+      { name: 'Snickers', age: 2 },
+      { name: 'hugo', age: 8 }
+    ];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // 1) Regular logging
+    console.log('hello');
+
+    // 2) Interpolated logging
+    console.log('Hello I am a %s string!', '💩');
+
+    // 3) Styled logging
+    console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue');
+
+    // 4) Warnings
+    console.warn('OH NOOOOOO');
+
+    // 5) Errors
+    console.error('Shit!');
+
+    // 6) Info
+    console.info('Crocodiles eat 3–4 people per year');
+
+    // 7) Assertions
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'Assertion failed: <p> does not have class "ouch"');
+
+    // 8) Clearing (commented so you can see prior logs)
+    // console.clear();
+
+    // 9) Viewing DOM elements
+    console.log(p);   // shows element
+    console.dir(p);   // shows properties
+
+    // 10) Grouping logs
+    dogs.forEach(dog => {
+      console.groupCollapsed(dog.name);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(dog.name);
+    });
+
+    // 11) Counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+
+    // 12) Timing async work
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(res => res.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    // 13) Tabular data
+    console.table(dogs);
+  </script>
+</body>
+</html>
