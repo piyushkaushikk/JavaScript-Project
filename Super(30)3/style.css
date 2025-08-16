@@ -1,0 +1,21 @@
+:root {
+  --base: hsl(248, 100%, 50%);
+  --spacing: 10px;
+  --blur: 10px;
+}
+
+img {
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+
+.controls {
+  margin: 20px;
+}
+label {
+  margin-right: 10px;
+}
+input {
+  margin-right: 30px;
+}
